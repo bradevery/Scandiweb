@@ -76,7 +76,7 @@ export default function CartOverlay({
         <h2 className="text-sm font-bold mb-4">
           My Bag,{' '}
           <span className="font-normal">
-            {totalQuantity === 1 ? '1 item' : `${totalQuantity} items`}
+            {totalQuantity === 1 ? '1 Item' : `${totalQuantity} Items`}
           </span>
         </h2>
 
@@ -90,14 +90,14 @@ export default function CartOverlay({
                   <h3 className="font-light text-sm mb-0.5">{item.name}</h3>
                   <p className="text-sm font-medium mb-2">${item.price?.toFixed(2)}</p>
                   {item.attributes.map((attr) => {
-                    const attrName = attr.name.toLowerCase().replace(/\s+/g, '-');
+                    const attrName = attr.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                     const isSwatch = attr.type === 'swatch';
                     return (
                       <div key={attr.name} className="mb-1.5" data-testid={`cart-item-attribute-${attrName}`}>
                         <p className="text-xs font-medium mb-1">{attr.name}:</p>
                         <div className="flex gap-1 flex-wrap">
                           {attr.items.map((option) => {
-                            const optionKey = option.value.toLowerCase().replace(/\s+/g, '-');
+                            const optionKey = option.displayValue.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                             const isSelected = item.selectedAttributes[attr.name] === option.value;
                             return (
                               <span
