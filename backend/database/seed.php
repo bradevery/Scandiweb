@@ -15,6 +15,12 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 
+    $count = $pdo->query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = 'products'")->fetchColumn();
+    if ($count > 0 && $pdo->query("SELECT COUNT(*) FROM products")->fetchColumn() > 0) {
+        echo "Already seeded, skipping.\n";
+        exit(0);
+    }
+
     $pdo->exec("CREATE TABLE IF NOT EXISTS `categories` (
         `id` INT AUTO_INCREMENT PRIMARY KEY,
         `name` VARCHAR(100) NOT NULL

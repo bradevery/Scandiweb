@@ -6,8 +6,13 @@ use PDO;
 
 class Database
 {
+    private static ?PDO $instance = null;
+
     public static function connect(): PDO
     {
+        if (self::$instance !== null) {
+            return self::$instance;
+        }
         $host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'mysql.railway.internal';
         $db   = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'railway';
         $user = getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root';
@@ -22,6 +27,7 @@ class Database
             PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
         ];
 
-        return new PDO($dsn, $user, $pass, $options);
+        self::$instance = new PDO($dsn, $user, $pass, $options);
+        return self::$instance;
     }
 }
