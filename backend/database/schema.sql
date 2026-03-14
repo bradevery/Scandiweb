@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS `scandiweb_test` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `scandiweb_test`;
 
 CREATE TABLE IF NOT EXISTS `categories` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
