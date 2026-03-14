@@ -8,10 +8,10 @@ class Database
 {
     public static function connect(): PDO
     {
-        $host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'localhost';
-        $db   = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'scandiweb_test';
+        $host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'mysql.railway.internal';
+        $db   = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'railway';
         $user = getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root';
-        $pass = getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: '';
+        $pass = getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: 'RUpQrSSTzpIdvdyVhGDbVelfaFTLVsIJ';
         $port = (int)(getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: 3306);
         $charset = 'utf8mb4';
 
