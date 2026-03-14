@@ -8,11 +8,11 @@ class Database
 {
     public static function connect(): PDO
     {
-        $host = getenv('MYSQLHOST') ?: 'localhost';
-        $db   = getenv('MYSQLDATABASE') ?: 'scandiweb_test';
-        $user = getenv('MYSQLUSER') ?: 'root';
-        $pass = getenv('MYSQLPASSWORD') ?: '';
-        $port = (int)(getenv('MYSQLPORT') ?: 3306);
+        $host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'localhost';
+        $db   = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'scandiweb_test';
+        $user = getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root';
+        $pass = getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: '';
+        $port = (int)(getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: 3306);
         $charset = 'utf8mb4';
 
         $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
