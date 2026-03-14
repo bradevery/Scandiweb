@@ -15,7 +15,6 @@ interface CartOverlayProps {
   cartItems: CartItem[];
   decreaseQuantity: (index: number) => void;
   increaseQuantity: (index: number) => void;
-  updateAttribute: (index: number, attrName: string, value: string) => void;
   clearCart: () => void;
 }
 
@@ -25,7 +24,6 @@ export default function CartOverlay({
   cartItems,
   decreaseQuantity,
   increaseQuantity,
-  updateAttribute,
   clearCart,
 }: CartOverlayProps) {
   const [toast, setToast] = useState<ToastState | null>(null);
@@ -67,7 +65,7 @@ export default function CartOverlay({
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
       <div
-        className="fixed inset-0 z-40"
+        className="fixed inset-0 top-14 sm:top-16 z-40 bg-black bg-opacity-50"
         onClick={onClose}
       />
 
@@ -102,19 +100,18 @@ export default function CartOverlay({
                             const optionKey = option.value.toLowerCase().replace(/\s+/g, '-');
                             const isSelected = item.selectedAttributes[attr.name] === option.value;
                             return (
-                              <button
+                              <span
                                 key={option.id}
-                                onClick={() => updateAttribute(index, attr.name, option.value)}
-                                className={`border text-xs cursor-pointer transition
+                                className={`border text-xs
                                   ${isSelected ? 'border-black' : 'border-gray-300'}
-                                  ${isSwatch ? 'w-5 h-5' : 'px-1.5 py-0.5 min-w-[1.5rem]'}
+                                  ${isSwatch ? 'w-5 h-5 inline-block' : 'px-1.5 py-0.5 min-w-[1.5rem] inline-flex items-center justify-center'}
                                   ${!isSwatch && isSelected ? 'bg-black text-white' : ''}
                                   ${!isSwatch && !isSelected ? 'bg-white text-black' : ''}`}
                                 style={isSwatch ? { backgroundColor: option.value } : {}}
                                 data-testid={`cart-item-attribute-${attrName}-${optionKey}${isSelected ? '-selected' : ''}`}
                               >
                                 {!isSwatch && option.displayValue}
-                              </button>
+                              </span>
                             );
                           })}
                         </div>

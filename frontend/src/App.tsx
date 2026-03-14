@@ -17,7 +17,6 @@ function AppInner() {
     addToCart,
     increaseQuantity,
     decreaseQuantity,
-    updateAttribute,
     clearCart,
   } = useCart();
 
@@ -43,7 +42,6 @@ function AppInner() {
         cartItems={cartItems}
         decreaseQuantity={decreaseQuantity}
         increaseQuantity={increaseQuantity}
-        updateAttribute={updateAttribute}
         clearCart={handleOrderPlaced}
       />
 
