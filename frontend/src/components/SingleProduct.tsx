@@ -143,7 +143,6 @@ export default function SingleProduct({ addTocart, openCart }: SingleProductProp
               <div className="flex gap-2 flex-wrap">
                 {attr.items.map((item) => {
                   const isSelected = selectedAttributes[attr.name] === item.value;
-                  const itemKey = item.displayValue.toLowerCase().replace(/\s+/g, '-');
                   return (
                     <button
                       key={item.id}
@@ -154,7 +153,7 @@ export default function SingleProduct({ addTocart, openCart }: SingleProductProp
                         ${!isSwatch && isSelected ? 'bg-black text-white' : ''}
                         ${!isSwatch && !isSelected ? 'bg-white text-black' : ''}`}
                       style={isSwatch ? { backgroundColor: item.value } : {}}
-                      data-testid={`product-attribute-${attrKey}-${itemKey}`}
+                      data-testid={`product-attribute-${attrKey}-${item.value}`}
                     >
                       {!isSwatch && item.displayValue}
                     </button>
