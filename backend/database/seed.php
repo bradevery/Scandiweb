@@ -23,7 +23,8 @@ try {
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS `categories` (
         `id` INT AUTO_INCREMENT PRIMARY KEY,
-        `name` VARCHAR(100) NOT NULL
+        `name` VARCHAR(100) NOT NULL,
+        UNIQUE KEY `unique_name` (`name`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS `products` (
