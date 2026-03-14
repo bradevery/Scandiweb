@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 
 const httpLink = new HttpLink({
-  uri: 'https://scandiweb.xo.je/graphql',
+  uri: 'https://ingenious-surprise-production-4035.up.railway.app/graphql',
   headers: {
     'Content-Type': 'application/json',
   },
