@@ -2,7 +2,8 @@ FROM php:8.1-apache
 
 RUN apt-get update && apt-get install -y default-mysql-client \
     && docker-php-ext-install pdo pdo_mysql \
-    && a2enmod rewrite headers
+    && a2dismod mpm_event mpm_worker || true \
+    && a2enmod mpm_prefork rewrite headers
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 COPY . /var/www/html/
