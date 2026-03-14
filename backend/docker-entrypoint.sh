@@ -12,9 +12,9 @@ echo "Host: $DB_HOST Port: $DB_PORT User: $DB_USER DB: $DB_NAME"
 
 # Check if DB_PASS is empty to avoid the -p flag issue
 if [ -z "$DB_PASS" ]; then
-    mysql --ssl-mode=DISABLED -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" "$DB_NAME" < /var/www/html/database/schema.sql && echo "Schema imported." || echo "Schema import failed."
+    mysql --skip-ssl -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" "$DB_NAME" < /var/www/html/database/schema.sql && echo "Schema imported." || echo "Schema import failed."
 else
-    mysql --ssl-mode=DISABLED -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < /var/www/html/database/schema.sql && echo "Schema imported." || echo "Schema import failed."
+    mysql --skip-ssl -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < /var/www/html/database/schema.sql && echo "Schema imported." || echo "Schema import failed."
 fi
 
 echo "Starting php-fpm..."
