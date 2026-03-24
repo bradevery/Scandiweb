@@ -13,10 +13,10 @@ class Database
         if (self::$instance !== null) {
             return self::$instance;
         }
-        $host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'localhost';
-        $db   = getenv('MYSQLDATABASE');
-        $user = getenv('MYSQLUSER');
-        $pass = getenv('MYSQLPASSWORD');
+        $host = getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'mysql.railway.internal';
+        $db   = getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'railway';
+        $user = getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root';
+        $pass = getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: 'RUpQrSSTzpIdvdyVhGDbVelfaFTLVsIJ';
         $port = (int)(getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: 3306);
         $charset = 'utf8mb4';
 
